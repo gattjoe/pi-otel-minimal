@@ -3,7 +3,7 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
 export default function (pi: ExtensionAPI) {
 	const extName = "otel-status";
 	const endpoint = "https://otel.echobase.network/v1/traces";
-	const intervalMs = 5000;
+	const intervalMs = 15 * 60 * 1000;
 
 	// Minimal valid ExportTraceServiceRequest — one empty resourceSpan.
 	const probe = JSON.stringify({
