@@ -1,0 +1,39 @@
+{
+  "name": "pi-otel-status",
+  "version": "0.0.1",
+  "description": "Status bar indicator for Pi coding agent showing OpenTelemetry trace-endpoint reachability.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "extension",
+    "otel",
+    "opentelemetry",
+    "status"
+  ],
+  "author": "Joe Gatt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gattjoe/pi-otel-status.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gattjoe/pi-otel-status/issues"
+  },
+  "homepage": "https://github.com/gattjoe/pi-otel-status#readme",
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}
