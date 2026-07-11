@@ -1,7 +1,7 @@
 {
-  "name": "pi-otel-status",
-  "version": "0.0.1",
-  "description": "Status bar indicator for Pi coding agent showing OpenTelemetry trace-endpoint reachability.",
+  "name": "pi-otel-minimal",
+  "version": "0.1.0",
+  "description": "Pi coding agent extension: OTel endpoint status indicator, live OTel trace export to Tempo, and full session shipping to Loki.",
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.mjs"
@@ -13,23 +13,31 @@
     "extension",
     "otel",
     "opentelemetry",
-    "status"
+    "status",
+    "tracing",
+    "loki",
+    "logging",
+    "session"
   ],
   "author": "Joe Gatt",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gattjoe/pi-otel-status.git"
+    "url": "git+https://github.com/gattjoe/pi-otel-minimal.git"
   },
   "bugs": {
-    "url": "https://github.com/gattjoe/pi-otel-status/issues"
+    "url": "https://github.com/gattjoe/pi-otel-minimal/issues"
   },
-  "homepage": "https://github.com/gattjoe/pi-otel-status#readme",
+  "homepage": "https://github.com/gattjoe/pi-otel-minimal#readme",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.205.0",
+    "@opentelemetry/resources": "^2.0.1",
+    "@opentelemetry/sdk-trace-base": "^2.0.1"
+  },
   "peerDependencies": {
     "@earendil-works/pi-ai": "*",
-    "@earendil-works/pi-coding-agent": "*",
-    "@earendil-works/pi-tui": "*",
-    "typebox": "*"
+    "@earendil-works/pi-coding-agent": "*"
   },
   "pi": {
     "extensions": [
