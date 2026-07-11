@@ -58,17 +58,17 @@ function run(fetchImpl) {
 
 test("reachable endpoint reports success", () => {
 	const { afterStart, afterShutdown } = run(`async () => new Response(null, { status: 200 })`);
-	assert.deepEqual(afterStart, ["otel-status", "success:● traces OK"]);
+	assert.deepEqual(afterStart, ["otel-status", "success:● otel OK"]);
 	// JSON.stringify over the child boundary turns the real `undefined` into `null`.
 	assert.deepEqual(afterShutdown, ["otel-status", null]);
 });
 
 test("non-2xx response reports the status code", () => {
 	const { afterStart } = run(`async () => new Response(null, { status: 503 })`);
-	assert.deepEqual(afterStart, ["otel-status", "error:● traces 503"]);
+	assert.deepEqual(afterStart, ["otel-status", "error:● otel 503"]);
 });
 
 test("network failure reports unreachable", () => {
 	const { afterStart } = run(`async () => { throw new Error("boom"); }`);
-	assert.deepEqual(afterStart, ["otel-status", "error:● traces unreachable"]);
+	assert.deepEqual(afterStart, ["otel-status", "error:● otel unreachable"]);
 });

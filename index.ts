@@ -588,10 +588,10 @@ export default function (pi: ExtensionAPI) {
 			});
 			ctx.ui.setStatus(
 				"otel-status",
-				res.ok ? ctx.ui.theme.fg("success", "● traces OK") : ctx.ui.theme.fg("error", `● traces ${res.status}`),
+				res.ok ? ctx.ui.theme.fg("success", "● otel OK") : ctx.ui.theme.fg("error", `● otel ${res.status}`),
 			);
 		} catch {
-			ctx.ui.setStatus("otel-status", ctx.ui.theme.fg("error", "● traces unreachable"));
+			ctx.ui.setStatus("otel-status", ctx.ui.theme.fg("error", "● otel unreachable"));
 		}
 	}
 

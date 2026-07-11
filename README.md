@@ -24,9 +24,9 @@ Requires Pi v0.37.3+.
 
 | Status | Meaning |
 |--------|---------|
-| `● traces OK` | Endpoint returned 2xx |
-| `● traces <code>` | Endpoint reachable but returned an error status |
-| `● traces unreachable` | Request failed (network error, timeout, DNS, etc.) |
+| `● otel OK` | Endpoint returned 2xx |
+| `● otel <code>` | Endpoint reachable but returned an error status |
+| `● otel unreachable` | Request failed (network error, timeout, DNS, etc.) |
 
 **Traces**: spans start and end live as the session runs (session/agent/turn/tool hierarchy), exported via OTLP/HTTP.
 
