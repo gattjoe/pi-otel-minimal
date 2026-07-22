@@ -443,6 +443,8 @@ export default function (pi: ExtensionAPI) {
 
 		ensureAttribute(span, "pi.session.id", otelSessionId);
 		ensureAttribute(span, "pi.turn.index", event.turnIndex);
+		ensureAttribute(span, "pi.model.id", ctx.model?.id);
+		ensureAttribute(span, "pi.model.provider", ctx.model?.provider);
 
 		spans.turns.set(event.turnIndex, span);
 		traceEnvStack.push(`turn:${event.turnIndex}`, span);
