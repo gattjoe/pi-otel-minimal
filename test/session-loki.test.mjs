@@ -19,7 +19,7 @@ async function withSessionFile(lines, run) {
 }
 
 // Drives the extension against a fake pi/ctx and a stubbed fetch, exercising
-// the session_start -> session_switch -> session_shutdown ship sequence.
+// the session_start(startup) -> session_start(resume) -> session_shutdown ship sequence.
 // `pi.on` collects handlers into arrays (like the real runtime) since the
 // extension registers more than one handler for session_start/shutdown.
 function run(sessionFile, fetchImpl) {
@@ -54,7 +54,7 @@ function run(sessionFile, fetchImpl) {
 		const extension = (await import(${JSON.stringify(indexUrl)})).default;
 		extension(pi);
 
-		await dispatch("session_start", { type: "session_start" }, ctx);
+		await dispatch("session_start", { type: "session_start", reason: "startup" }, ctx);
 		await dispatch("session_shutdown", { type: "session_shutdown" }, ctx);
 
 		console.log(JSON.stringify({ statuses, requests }));
@@ -123,8 +123,8 @@ test("does not ship the same session twice", async () => {
 			const extension = (await import(${JSON.stringify(indexUrl)})).default;
 			extension(pi);
 
-			await dispatch("session_start", { type: "session_start" }, ctx);
-			await dispatch("session_switch", { type: "session_switch" }, ctx);
+			await dispatch("session_start", { type: "session_start", reason: "startup" }, ctx);
+			await dispatch("session_start", { type: "session_start", reason: "resume" }, ctx);
 			await dispatch("session_shutdown", { type: "session_shutdown" }, ctx);
 
 			console.log(JSON.stringify({ lokiCalls }));
@@ -169,7 +169,7 @@ test("runs a full agent/turn/tool lifecycle without throwing and still ships to 
 			const extension = (await import(${JSON.stringify(indexUrl)})).default;
 			extension(pi);
 
-			await dispatch("session_start", { type: "session_start" }, ctx);
+			await dispatch("session_start", { type: "session_start", reason: "startup" }, ctx);
 			await dispatch("input", { text: "do the thing", source: "interactive" }, ctx);
 			await dispatch("agent_start", {}, ctx);
 			await dispatch("turn_start", { turnIndex: 0, timestamp: Date.now() }, ctx);

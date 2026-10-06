@@ -30,7 +30,7 @@ Requires Pi v0.37.3+.
 
 **Traces**: spans start and end live as the session runs (session/agent/turn/tool hierarchy), exported via OTLP/HTTP.
 
-**Logs**: on `session_switch` and `session_shutdown`, reads the full session file and POSTs its lines as one stream to Loki (labels: `job=pi-session`, `project`, `session_id`). Each session is shipped exactly once, in full, after it ends — this does not stream partial content from a session that's still running.
+**Logs**: on `session_start` (reason `new`/`resume`/`fork`) and `session_shutdown`, reads the full session file and POSTs its lines as one stream to Loki (labels: `job=pi-session`, `project`, `session_id`). Each session is shipped exactly once, in full, after it ends — this does not stream partial content from a session that's still running.
 
 | Status | Meaning |
 |--------|---------|

@@ -88,7 +88,7 @@ export class TraceEnvStack {
 		}
 	}
 
-	// Called only at genuine session-end boundaries (session_switch, agent_end
+	// Called only at genuine session-end boundaries (session replacement via session_start, agent_end
 	// shutdown, session_shutdown). Must also drop the env vars themselves —
 	// leaving them set is what let a finished session's trace/span IDs leak
 	// into the next, unrelated session as a stale parent context.
